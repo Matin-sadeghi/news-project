@@ -1,0 +1,57 @@
+<div style="font-family: BYekan" class="limiter">
+  <div
+    class="container-login100"
+    style="background-image: url('/images/bg-01.jpg')"
+  >
+    <div class="wrap-login100 p-t-30 p-b-50">
+      <span class="login100-form-title p-b-41"> ورود کاربران </span>
+      <form
+        action="/users/login"
+        method="post"
+        class="login100-form validate-form p-b-33 p-t-5"
+      >
+        <div
+          class="wrap-input100 validate-input"
+          data-validate="Enter username"
+        >
+          <input
+            style="text-align: right"
+            class="input100"
+            type="text"
+            name="email"
+            placeholder="ایمیل"
+          />
+        </div>
+
+        <div
+          class="wrap-input100 validate-input"
+          data-validate="Enter password"
+        >
+          <input
+            style="text-align: right"
+            class="input100"
+            type="password"
+            name="password"
+            placeholder="کلمه عبور"
+          />
+        </div>
+        <div class="mt-5 mr-2" style="text-align: right">
+          <input type="checkbox" name="rememberMe" /> مرا به خاطر بسپار
+        </div>
+        <div class="container-login100-form-btn m-t-32">
+          <button class="login100-form-btn">ورود</button>
+        </div>
+        <div style="text-align:center" class="mt-2 mb-2">
+          <a class="btn btn-outline-danger ml-2" href="/users/register"
+            >ثبت نام</a
+          >
+        </div>
+        <div style="text-align: center;">
+          <a class="btn btn-outline-danger ml-2" href="/users/forget-password"
+            >فراموشی کلمه عبور</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

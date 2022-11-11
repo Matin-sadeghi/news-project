@@ -1,0 +1,31 @@
+
+<div style="direction:ltr;" class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+      <div>
+        <div  style="direction:rtl;" class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+         <%= category.title  %> 
+        </div>
+      </div>
+      <div class="owl-carousel owl-theme" id="slider2">
+        <% articles.forEach(article => {%>
+        <div class="item px-2">
+          <div class="fh5co_hover_news_img">
+            <div class="fh5co_news_img">
+              <a href="/single/<%=article._id  %>"><img style="width:100%; height: 100%;" src="/uploads/articleImages/<%=article.thumbnail  %>" alt="" /></a>
+            </div>
+            <div>
+              <a href="/single/<%=article._id  %>" class="d-block fh5co_small_post_heading"
+                ><span class=""
+                  ><%=article.summery  %> 
+                </span></a
+              >
+              <div class="c_g">
+                <i class="fa fa-clock-o"></i> <%=formatDate(article.updatedAt)  %> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }); %> 
+      </div>
+    </div>
+  </div>

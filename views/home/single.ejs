@@ -1,0 +1,140 @@
+<%- include("./../includes/authMessage.ejs")  %> 
+<div>
+  <img style="width: 100%;height:500px" src="/uploads/articleImages/<%=article.thumbnail  %>" alt="">
+</div>
+<div id="fh5co-single-content" class="container-fluid pb-4 pt-4 paddding">
+    <div class="container paddding">
+        <div class="row mx-0">
+            <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+              <%-article.body  %>
+            </div>
+            
+            <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+                <div>
+                  <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+                    تگ ها
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="fh5co_tags_all">
+                  <a href="#" class="fh5co_tagg">تست</a>
+                  <a href="#" class="fh5co_tagg">تست</a>
+                  <a href="#" class="fh5co_tagg">تست</a>
+                  <a href="#" class="fh5co_tagg">تست</a>
+                  <a href="#" class="fh5co_tagg">تست</a>
+                  <a href="#" class="fh5co_tagg">تست</a>
+                </div>
+                <div>
+                  <div
+                    class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4"
+                  >
+                    محبوب ترین خبر ها
+                  </div>
+                </div>
+                <% populateArticles.forEach(populateArticle => {%>
+                  <div class="row pb-3">
+                    <div class="col-5 align-self-center">
+                      <img
+                        src="/uploads/articleImages/<%=populateArticle.thumbnail  %>"
+                        alt="img"
+                        class="fh5co_most_trading"
+                      />
+                    </div>
+                    <div class="col-7 paddding">
+                      <a href="/single/<%=populateArticle._id  %>" class="most_fh5co_treding_font">
+                        <%=populateArticle.summery %> 
+                      </a>
+                      <div class="most_fh5co_treding_font_123"><%=formatDate(populateArticle.updatedAt)  %> </div>
+                    </div>
+                  </div>
+                  <%  }); %> 
+     
+
+
+              </div>
+        </div>
+
+        <div>
+          کامنت
+          <form method="post" action="/comments/<%=article._id  %>">
+          <textarea
+          rows="10"
+          class="form-control"
+          name="body"
+          id="body"
+          placeholder="متن آگهی را وارد کنید"
+          >
+          <%=typeof oldValue!='undefined'?oldValue.body:""%></textarea
+          >
+          <button class="btn btn-success mt-2" type="submit">ارسال</button>
+        </form>
+        </div>
+
+        <%- include("./../includes/comments.ejs",{article:article})  %> 
+
+    </div>
+</div>
+
+<div style="direction:ltr;" class="container-fluid pb-4 pt-5">
+    <div class="container animate-box">
+      <div>
+        <div  style="direction:rtl;" class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+         <%= category.title  %> 
+        </div>
+      </div>
+      <div class="owl-carousel owl-theme" id="slider2">
+        <% articles.forEach(article => {%>
+        <div class="item px-2">
+          <div class="fh5co_hover_news_img">
+            <div class="fh5co_news_img">
+              <a href="/single/<%=article._id  %>"><img style="width:100%; height: 100%;" src="/uploads/articleImages/<%=article.thumbnail  %>" alt="" /></a>
+            </div>
+            <div style="direction: rtl;">
+              <a href="/single/<%=article._id  %>" class="d-block fh5co_small_post_heading"
+                ><span class=""
+                  ><%=article.summery  %> 
+                </span></a
+              >
+              <div class="c_g">
+                <i class="fa fa-clock-o"></i> <%=formatDate(article.updatedAt)  %> 
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }); %> 
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+  </div>
+
+
+
+
+  
+<script>
+   CKEDITOR.replace("body",{language: "fa",})
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+        integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+<!-- Waypoints -->
+<script src="/js/jquery.waypoints.min.js"></script>
+<!-- Parallax -->
+<script src="/js/jquery.stellar.min.js"></script>
+<!-- Main -->
+<script src="/js/main.js"></script>
+<script>if (!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i)){$(window).stellar();}</script>
+
+</body>
+</html>

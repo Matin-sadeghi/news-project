@@ -1,0 +1,161 @@
+<%- include("./../../includes/authMessage.ejs")  %> 
+
+
+<div
+class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom"
+>
+<h2>ایجاد مقاله جدید </h2>
+</div>
+<form class="form-horizontal" action="/admin/articles/create"  method="post">
+
+
+<div class="form-group row">
+  <div class="col">
+    <label for="title" class="control-label font-weight-bold">عنوان مقاله </label>
+   
+    <input type="text" class="form-control" name="title" id="title"
+    placeholder="عنوان مقاله را وارد کنید" value="<%=typeof
+    oldValue!='undefined'?oldValue.title:"" %>">
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col">
+    <label for="category" class="control-label font-weight-bold font-weight-bold"
+      > دسته بندی مربوطه</label
+    >
+    
+    <select name="category" id="category" class="form-control">
+      <%categories.forEach(category=>{%>
+      <option  value="<%= category._id  %>" <%=typeof oldValue!='undefined'&& oldValue.category==category._id?'selected':'' %>  ><%= category.title  %> </option>
+     <% }) %>      
+    </select>
+</div>
+</div>
+  
+
+
+<div class="form-group row">
+  <div class="col">
+    <label for="summery" class="control-label font-weight-bold">خلاصه مقاله</label>
+  
+    <input type="text" class="form-control" name="summery" id="summery"
+    placeholder="اسلاگ دسته بندی را وارد کنید" value="<%=typeof
+    oldValue!='undefined'?oldValue.summery:"" %>">
+  </div>
+</div>
+
+
+<div class="form-group row">
+  <div class="col">
+    <label for="body" class="control-label font-weight-bold">متن مقاله</label>
+  <textarea
+rows="10"
+class="form-control"
+name="body"
+id="body"
+placeholder="متن آگهی را وارد کنید"
+>
+<%=typeof oldValue!='undefined'?oldValue.body:""%></textarea
+>
+
+ 
+  </div>
+</div>
+
+
+
+
+
+
+  <label for="selectedThumbnail">عکس بند انگشتی</label>
+  <div class="input-group mb-3">
+    <input
+      type="file"
+      class="custom-file-input"
+      name="thumbnailFile"
+      id="selectedThumbnail"
+      aria-describedby="inputGroupFileAddon03"
+    />
+    <label id="thumbStatus" class="custom-file-label" for="inputGroupFile03"
+      >عکس مورد نظر را انتخاب کنید</label
+    >
+  </div>
+  <input id="inpThumbnail" type="hidden" name="thumbnail">
+  <p id="imageStatus"></p>
+  <div id="imgDiv">
+
+  </div>
+  <button type="button" onclick="AjaxSendImage()" class="btn btn-blue-grey mb-2">آپلود تصویر</button>
+
+<div class="form-group row">
+  <div class="col">
+    <button type="submit" class="btn btn-success">ارسال</button>
+    <a href="http://localhost:3000/admin/categories" class="btn btn-danger">انصراف</a>
+
+  </div>
+</div>
+</form>
+
+
+
+
+<script>
+ CKEDITOR.replace("body",{language: "fa",})
+
+   function AjaxSendImage(){
+
+let selectedImage= document.getElementById("selectedThumbnail");
+let imageStatus = document.getElementById("imageStatus")  
+
+let formData  = new FormData()
+if (selectedImage.files.length > 0) {
+formData.append("image",selectedImage.files[0]);
+} else {
+  imageStatus.innerHTML = "ابتدا عکس خود را انتخاب کنید";
+}
+if(selectedImage.files.length > 0){
+$.ajax({
+  url: "/admin/ajax-imgUplod",
+  type: "POST",
+  processData: false,
+  contentType: false,
+  cache: false,
+  data:formData ,
+  success: function (msg) {
+
+    
+let imgDiv = document.getElementById('imgDiv');
+document.getElementById("inpThumbnail").value=msg.fileName
+// let images = document.getElementById("images");
+$(imgDiv).empty();
+ $(imgDiv).append('<div><img class="mr-2" style="width:70px;height:70px;display:block;"  src='+msg.address +' ></div>');
+// $(images).append('<option  selected value='+msg.fileName+'>'+msg.fileName+'</option>')
+  Swal.fire({
+  title: "موفقیت آمیز بود",
+  text: "عکس شما با موفقیت آپلود شد",
+  icon: "success",
+  showConfirmButton: true,
+  confirmButtonText: "تایید",
+});
+
+
+},
+error:function(msg){
+  Swal.fire({
+  title: "خطا !",
+  html: `عکس شما آپلود نشد
+  <br>
+  ${msg.responseJSON.error}
+  `,
+  icon: "error",
+  showConfirmButton: true,
+  confirmButtonText: "تایید",
+});
+  
+}
+})
+}
+
+}
+</script>

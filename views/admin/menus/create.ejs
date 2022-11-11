@@ -1,0 +1,61 @@
+<%- include("./../../includes/authMessage.ejs")  %> 
+
+
+<div
+class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom"
+>
+<h2>ایجاد منو </h2>
+</div>
+<form class="form-horizontal" action="/admin/menus/create"  method="post">
+
+
+<div class="form-group row">
+  <div class="col">
+    <label for="title" class="control-label font-weight-bold">عنوان  منو</label>
+    <% console.log(oldValue)  %> 
+    <input type="text" class="form-control" name="title" id="title"
+    placeholder="عنوان  منو را وارد کنید" value="<%=typeof
+    oldValue!='undefined'?oldValue.title:"" %>">
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col">
+    <label for="url" class="control-label font-weight-bold">آدرس منو</label>
+    <input type="text" class="form-control" name="url" id="url"
+    placeholder="آدرس منو را وارد کنید" value="<%=typeof
+    oldValue!='undefined'?oldValue.url:"" %>">
+  </div>
+</div>
+
+
+
+<div class="form-group row">
+    <div class="col">
+      <label for="parentId" class="control-label font-weight-bold font-weight-bold"
+        >  زیر منو مربوطه</label
+      >
+      
+      <select name="parentId" id="parentId" class="form-control">
+        <option value="none">منو اصلی</option>
+        <%menus.forEach(menu=>{%>
+        <option  value="<%= menu._id  %>" <%=typeof oldValue!='undefined'&& oldValue.menu==menu._id?'selected':'' %>  ><%= menu.title  %> </option>
+       <% }) %>      
+      </select>
+  </div>
+  </div>
+
+
+
+
+  
+
+<div class="form-group row">
+  <div class="col">
+    <button type="submit" class="btn btn-success">ارسال</button>
+    <a href="http://localhost:3000/admin/menus" class="btn btn-danger">انصراف</a>
+
+  </div>
+</div>
+</form>
+

@@ -1,0 +1,70 @@
+<%- include("./../../includes/authMessage.ejs") %>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom"
+></div>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 border-bottom-1"
+>
+  <h2>کامنت ها</h2>
+  <div class="btn-group">
+    <a href="/admin/comments/create" class="btn btn-sm btn-primary"
+      >افزودن دسته بندی جدید</a
+    >
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <!-- <% let i = 1+((comments.page-1)*comments.limit) %>  -->
+        <th>ردیف</th>
+        <th>کاربر</th>
+        <th>متن کامنت</th>
+        <th>مقاله</th>
+        <th>وضعیت</th>
+
+        <th>تنظیمات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% comments.docs.forEach(comment => {%>
+      <tr>
+        <td><%=i  %> </td>
+        <% i++ %> 
+        <td><a href="/comments/آپدیت-جدید-راکت"><%=comment.user.username %> </a></td>
+        <td><%- comment.body  %> </td>
+        <td><a href="/single/<%=comment.article._id  %>"><%= comment.article.title  %></a> </td>
+        <td><%= comment.approved==false?"نمایش داده نشده":"نمایش داده شده"  %>
+          <% if(comment.approved){%>
+        <span style="display: inline-block;width: 20px;height: 20px;background-color: green;border-radius: 50px;margin-top: 7px;"></span>
+
+        <%}else{%>
+          <span style="display: inline-block;width: 20px;height: 20px;background-color: red;border-radius: 50px;margin-top: 7px;"></span>
+
+          <%} %> 
+        </td>
+
+        <td>
+          <form
+            action="<%=domain%>/admin/comments/delete/<%=comment._id  %>?_method=DELETE"
+            method="post"
+          >
+            <div class="btn-group btn-group-sm">
+              <a
+                href="<%=domain%>/admin/comments/edit/<%=comment._id%>"
+                class="btn btn-primary"
+                >تغییر وضعیت</a
+              >
+              <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+<%- include("./../../includes/pagination.ejs",{pagination:comments})  %> 

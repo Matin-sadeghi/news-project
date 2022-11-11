@@ -1,0 +1,270 @@
+
+
+
+    <div class="container-fluid paddding mb-5">
+      <div class="row mx-0">
+        <div
+          class="col-md-6 col-12 paddding animate-box"
+          data-animate-effect="fadeIn"
+        >
+          <div class="fh5co_suceefh5co_height">
+          
+            <img src="/uploads/articleImages/<%=articles[0].thumbnail  %>" alt="img" />
+            <div class="fh5co_suceefh5co_height_position_absolute"></div>
+            <div class="fh5co_suceefh5co_height_position_absolute_font" style="left:0">
+              <div class="">
+                <a href="/single/<%=articles[0]._id  %>" class="color_fff">
+                  <i class="fa fa-clock-o"></i>&nbsp;&nbsp;<%=formatDate(articles[0].updatedAt)  %> 
+                </a>
+              </div>
+              <div class="">
+                <a href="/single/<%=articles[0]._id  %>" class="fh5co_good_font"><%=articles[0].summery  %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="row">
+            <div
+              class="col-md-6 col-6 paddding animate-box"
+              data-animate-effect="fadeIn"
+            >
+              <div class="fh5co_suceefh5co_height_2">
+                <img src="/uploads/articleImages/<%=articles[1].thumbnail  %>" alt="img" />
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                  <div class="">
+                    <a href="/single/<%=articles[1]._id  %>" class="color_fff">
+                      <i class="fa fa-clock-o"></i>&nbsp;&nbsp;<%=formatDate(articles[1].updatedAt)  %>
+                    </a>
+                  </div>
+                  <div class="">
+                    <a href="/single/<%=articles[1]._id  %>" class="fh5co_good_font_2"
+                      ><%=articles[1].summery  %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-6 paddding animate-box"
+              data-animate-effect="fadeIn"
+            >
+              <div class="fh5co_suceefh5co_height_2">
+                <img src="/uploads/articleImages/<%=articles[2].thumbnail  %>" alt="img" />
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                  <div class="">
+                    <a href="/single/<%=articles[2]._id  %>" class="color_fff">
+                      <i class="fa fa-clock-o"></i>&nbsp;&nbsp;<%=formatDate(articles[2].updatedAt)  %>
+                    </a>
+                  </div>
+                  <div class="">
+                    <a href="/single/<%=articles[2]._id  %>" class="fh5co_good_font_2"
+                      ><%=articles[2].summery  %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-6 paddding animate-box"
+              data-animate-effect="fadeIn"
+            >
+              <div class="fh5co_suceefh5co_height_2">
+                <img src="/uploads/articleImages/<%=articles[3].thumbnail  %>" alt="img" />
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                  <div class="">
+                    <a href="/single/<%=articles[3]._id  %>" class="color_fff">
+                      <i class="fa fa-clock-o"></i>&nbsp;&nbsp;<%=formatDate(articles[3].updatedAt)  %></a
+                    >
+                  </div>
+                  <div class="">
+                    <a href="single.html" class="fh5co_good_font_2"
+                      ><%=articles[3].summery  %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-6 paddding animate-box"
+              data-animate-effect="fadeIn"
+            >
+              <div class="fh5co_suceefh5co_height_2">
+                <img src="/uploads/articleImages/<%=articles[4].thumbnail  %>" alt="img" />
+                <div class="fh5co_suceefh5co_height_position_absolute"></div>
+                <div class="fh5co_suceefh5co_height_position_absolute_font_2">
+                  <div class="">
+                    <a href="/single/<%=articles[4]._id  %>" class="color_fff">
+                      <i class="fa fa-clock-o"></i>&nbsp;&nbsp;<%=formatDate(articles[4].updatedAt)  %>
+                    </a>
+                  </div>
+                  <div class="">
+                    <a href="single.html" class="fh5co_good_font_2"
+                      ><%=articles[4].summery  %>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid pt-3" style="direction: ltr;">
+      <div class="container animate-box" data-animate-effect="fadeIn">
+        <div>
+          <div style="direction:rtl;" class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+            <%= categories[0].title  %> 
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme js" id="slider1">
+          <% articleForCategory0.forEach(element => {%>
+                <div class="item px-2">
+            <div class="fh5co_latest_trading_img_position_relative">
+              <div class="fh5co_latest_trading_img">
+                <img
+                style="height: 100%;"
+                  src="/uploads/articleImages/<%=element.thumbnail  %>"
+                  alt=""
+                  class="fh5co_img_special_relative"
+                />
+              </div>
+              <div class="fh5co_latest_trading_img_position_absolute"></div>
+              <div style="direction: rtl;" class="fh5co_latest_trading_img_position_absolute_1">
+                <a href="/single/<%=element._id  %>" class="text-white"
+                  ><%= element.summery %>
+                </a>
+                <div class="fh5co_latest_trading_date_and_name_color">
+               - <%= formatDate(element.updatedAt)  %>      <%=element.user.username  %>  
+                </div>
+              </div>
+            </div>
+          </div>
+          <%  });  %> 
+      
+        </div>
+      </div>
+    </div>
+    <div style="direction:ltr;" class="container-fluid pb-4 pt-5">
+      <div class="container animate-box">
+        <div>
+          <div style="direction:rtl" class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+            <%= categories[1].title  %> 
+          </div>
+        </div>
+        <div class="owl-carousel owl-theme" id="slider2">
+          <% articleForCategory1.forEach(element => { %>
+            <div class="item px-2">
+              <div class="fh5co_hover_news_img">
+                <div class="fh5co_news_img">
+                  <a href="/single/<%=element._id  %>"><img style="width: 100%;height: 100%;" src="/uploads/articleImages/<%=element.thumbnail  %>" alt="" /></a>
+                </div>
+                <div style="direction: rtl;">
+                  <a href="/single/<%=element._id  %>" class="d-block fh5co_small_post_heading"
+                    ><span class=""
+                      ><%=element.summery  %>
+                    </span></a
+                  >
+                  <div class="c_g">
+                    <i class="fa fa-clock-o"></i> <%=formatDate(element.updatedAt)  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+       
+            <% }); %> 
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid pb-4 pt-4 paddding">
+      <div class="container paddding">
+        <div class="row mx-0">
+          <div class="col-md-8 animate-box" data-animate-effect="fadeInLeft">
+            <div>
+              <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+            <%= categories[2].title  %> 
+              
+              </div>
+            </div>
+       
+            <% articleForCategory2.forEach(element => {%>
+              <div class="row pb-4">
+                <div class="col-md-5">
+                  <a href="/single/<%=element._id  %>" >
+                  <div class="fh5co_hover_news_img">
+                    <div class="fh5co_news_img">
+                     <img style="width: 100%;height:100% ;" src="/uploads/articleImages/<%=element.thumbnail  %>" alt="" />
+                    </div>
+                    <div></div>
+                  </div>
+                </a>
+                </div>
+                <div class="col-md-7">
+                  <a href="/single/<%=element._id  %>" class="fh5co_magna py-2">
+                    <%=element.summery  %>
+                  </a>
+                  <span href="#" class="fh5co_mini_time py-3">
+                    -  <%=formatDate(element.updatedAt)  %>   <%= element.user.username  %> 
+                  </span>
+                  <div class="fh5co_consectetur">
+                    <%- element.body  %> 
+                  </div>
+                </div>
+              </div>
+              <%}); %> 
+           
+
+          </div>
+          <div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
+            <div>
+              <div class="fh5co_heading fh5co_heading_border_bottom py-2 mb-4">
+                تگ ها
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="fh5co_tags_all">
+              <a href="#" class="fh5co_tagg">تست</a>
+              <a href="#" class="fh5co_tagg">تست</a>
+              <a href="#" class="fh5co_tagg">تست</a>
+              <a href="#" class="fh5co_tagg">تست</a>
+              <a href="#" class="fh5co_tagg">تست</a>
+              <a href="#" class="fh5co_tagg">تست</a>
+            </div>
+            <div>
+              <div
+                class="fh5co_heading fh5co_heading_border_bottom pt-3 py-2 mb-4"
+              >
+                محبوب ترین خبر ها
+              </div>
+            </div>
+            <% populateArticles.forEach(populateArticle => {%>
+              <div class="row pb-3">
+                <div class="col-5 align-self-center">
+                  <img
+                    src="/uploads/articleImages/<%=populateArticle.thumbnail  %>"
+                    alt="img"
+                    class="fh5co_most_trading"
+                  />
+                </div>
+                <div class="col-7 paddding">
+                  <a href="/single/<%=populateArticle._id  %>" class="most_fh5co_treding_font">
+                    <%=populateArticle.summery %> 
+                  </a>
+                  <div class="most_fh5co_treding_font_123"><%=formatDate(populateArticle.updatedAt)  %> </div>
+                </div>
+              </div>
+              <%  }); %> 
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+   
+
+
+  

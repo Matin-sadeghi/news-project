@@ -1,0 +1,62 @@
+<%- include("./../../includes/authMessage.ejs") %>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom"
+></div>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 border-bottom-1"
+>
+  <h2> منو ها</h2>
+  <div class="btn-group">
+    <a href="/admin/menus/create" class="btn btn-sm btn-primary"
+      >افزودن  منو جدید</a
+    >
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <!-- <% let i = 1+((menus.page-1)*menus.limit) %>  -->
+        <th>ردیف</th>
+        <th>عنوان منو</th>
+        <th>آدرس</th>
+        <th>زیر منو</th>
+        <th>تنظیمات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% menus.docs.forEach(menu => {%>
+      <tr>
+        <td><%=i  %> </td>
+        <% i++ %> 
+        <td><a href="/menus/آپدیت-جدید-راکت"><%=menu.title %> </a></td>
+        <td><a href="/menus/آپدیت-جدید-راکت"><%=menu.url %> </a></td>
+        <td><a href="/menus/آپدیت-جدید-راکت"><%=  menu.parentId==null?"منو اصلی":menu.parentId.title %> </a></td>
+
+
+       
+
+        <td>
+          <form
+            action="<%=domain%>/admin/menus/delete/<%=menu._id  %>?_method=DELETE"
+            method="post"
+          >
+            <div class="btn-group btn-group-sm">
+              <a
+                href="<%=domain%>/admin/menus/edit/<%=menu._id%>"
+                class="btn btn-primary"
+                >ویرایش</a
+              >
+              <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+<%- include("./../../includes/pagination.ejs",{pagination:menus})  %> 

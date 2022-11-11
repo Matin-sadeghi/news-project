@@ -1,0 +1,76 @@
+<%- include("./../../includes/authMessage.ejs") %>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom"
+></div>
+
+<div
+  class="d-flex justify-content-between align-items-center mb-3 border-bottom-1"
+>
+  <h2>مقاله ها</h2>
+  <div class="btn-group">
+    <a href="/admin/articles/create" class="btn btn-sm btn-primary"
+      >افزودن مقاله جدید</a
+    >
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <!-- <% let i = 1+((articles.page-1)*articles.limit) %>  -->
+        <th>ردیف</th>
+        <th>عنوان دسته بندی</th>
+        <th>دسته بندی</th>
+        <th>خلاصه</th>
+        <th>کاربر</th>
+        <th>تصویر</th>
+        <th>وضعیت</th>
+        <th>تنظیمات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% articles.docs.forEach(article => {%>
+      <tr>
+        <td><%=i %></td>
+        <% i++ %>
+        <td><a href="/articles/آپدیت-جدید-راکت"><%=article.title %> </a></td>
+        <td><%= article.category.title %></td>
+        <td><%= article.summery %></td>
+        <td><%= article.user.username %></td>
+        <td>
+          <img
+            style="width: 40px; height: 40px"
+            src="/uploads/articleImages/<%=article.thumbnail  %>"
+          />
+        </td>
+        <td class="mt-2 mr-2 badge badge-pill  <%=article.status=="visible"?"badge-success":"badge-danger"  %>"><%= article.statusForTable() %></td>
+        <td>
+          <form
+            action="<%=domain%>admin/articles/delete/<%=article._id  %>?_method=DELETE"
+            method="post"
+          >
+            <div class="btn-group btn-group-sm">
+              <a
+                href="<%=domain%>/admin/articles/edit/<%=article._id%>"
+                class="btn btn-primary"
+                >ویرایش</a
+              >
+
+              <a
+                href="<%=domain%>/admin/articles/edit/status/<%=article._id%>"
+                class="btn btn-success"
+                >تغییر وضعیت</a
+              >
+
+              <button type="submit" class="btn btn-danger">حذف</button>
+            </div>
+          </form>
+        </td>
+      </tr>
+      <% }); %>
+    </tbody>
+  </table>
+</div>
+<%- include("./../../includes/pagination.ejs",{pagination:articles}) %>
